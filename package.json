@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "build": "npm run build-docs",
+    "build-docs": "redocly bundle docs/openapi.yaml --ext json -o docs/swagger.json",
+    "preview-docs": "redocly preview-docs"
   },
   "keywords": [],
   "author": "Roma Galyh <romagalyh@gmail.com>",
@@ -14,6 +17,7 @@
   "description": "",
   "devDependencies": {
     "@faker-js/faker": "^9.9.0",
+    "@redocly/cli": "^2.0.2",
     "nodemon": "^3.1.10",
     "pino-pretty": "^13.0.0"
   },
@@ -32,6 +36,7 @@
     "mongoose": "^8.16.2",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.5",
-    "pino-http": "^10.5.0"
+    "pino-http": "^10.5.0",
+    "swagger-ui-express": "^5.0.1"
   }
 }

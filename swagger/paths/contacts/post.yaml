@@ -1,0 +1,70 @@
+tags:
+  - Contacts
+summary: Get list of contacts
+operationId: getAllContacts
+description: 'Get contact'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - phoneNumber
+          - contactType
+        properties:
+          name:
+            description: "Contact's name"
+            type: string
+            example: 'John Doe'
+          phoneNumber:
+            description: "Contact's phone number"
+            type: string
+            example: +380500505555
+          email:
+            description: "Contact's email"
+            type: string
+            example: john@example.com
+          isFavourite:
+            description: 'Whether the contact is marked as favourite'
+            type: boolean
+            example: false
+          contactType:
+            description: 'Type of contact'
+            type: string
+            enum:
+              - work
+              - home
+              - personal
+            example: work
+          photo:
+            description: "Contact's photo"
+            type: string
+            format: binary
+
+responses:
+  '201':
+    description: 'Contact successfully created'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: 'Successfully created a contact!'
+            data:
+              $ref: '../../components/schemas/contact.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '400':
+    $ref: '../../components/responses/400.yaml'
